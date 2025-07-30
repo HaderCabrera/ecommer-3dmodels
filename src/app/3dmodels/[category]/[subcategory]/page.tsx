@@ -1,5 +1,5 @@
 // /[category]/[subcategory]/page.tsx
-import { FilterSidebar2 } from "@/components/filter-sidebar-2"
+import { FilterSidebar2 } from "../../../../../filters-sidebar"
 
 export default async function Subcategory({
     params,
