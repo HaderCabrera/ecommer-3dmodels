@@ -1,5 +1,5 @@
 
-import { FilterSidebar2 } from "../../../filters-sidebar"
+import { FilterSidebar2 } from "@/components/filters-sidebar"
 
 export default async function Subcategory() {
 

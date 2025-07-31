@@ -174,9 +174,20 @@ export function FilterSidebar2({ category, subcategory }: FilterSidebarProps) {
 
     return (
         <Sheet>
-            <SheetTrigger asChild>
+            {/* <SheetTrigger asChild>
                 <Button variant="outline">Open</Button>
+            </SheetTrigger> */}
+            <SheetTrigger asChild>
+                <button className="fixed right-0 top-1/2 z-50 bg-primary text-primary-foreground py-0.3 rounded-l-lg -translate-y-1/2 h-[7rem]" style={{ writingMode: 'vertical-lr', textOrientation: 'mixed' }}>
+                    Filtros
+                </button>
             </SheetTrigger>
+            <SheetContent side="right" className="w-[300px]">
+                {/* Contenido del sidebar de categorías */}
+            </SheetContent>
+            <SheetContent>
+                {/* Contenido del sidebar de categorías */}
+            </SheetContent>
             <SheetContent className="overflow-y-auto">
                 <SheetHeader className="bg-muted">
                     <SheetTitle>Selección de filtros</SheetTitle>

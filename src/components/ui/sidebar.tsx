@@ -292,6 +292,31 @@ function SidebarTrigger({
   )
 }
 
+function SidebarTriggerPersonalizado({
+  className,
+  onClick,
+  ...props
+}: React.ComponentProps<typeof Button>) {
+  const { toggleSidebar } = useSidebar()
+
+  return (
+    <button
+      className="fixed left-0 top-1/2 z-50 bg-primary text-primary-foreground py-0.3 rounded-r-lg -translate-y-1/2 h-[7rem] "
+      style={{writingMode:'vertical-rl', textOrientation:'mixed'}}
+      data-sidebar="trigger"
+      data-slot="sidebar-trigger"
+      onClick={(event) => {
+        onClick?.(event)
+        toggleSidebar()
+      }}
+      {...props}
+    >
+      Categorias
+    </button>
+  )
+}
+
+
 function FilterbarTrigger({
   className,
   onClick,
@@ -803,4 +828,5 @@ export {
   SidebarTriggerInto,
   FilterbarTrigger,
   useSidebar,
+  SidebarTriggerPersonalizado,
 }
