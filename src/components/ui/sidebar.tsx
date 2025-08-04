@@ -229,7 +229,8 @@ function Sidebar({
       <div
         data-slot="sidebar-container"
         className={cn(
-          "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex",
+          "fixed z-10 hidden w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex",
+          "top-[var(--header-height)] h-[calc(100svh-var(--header-height))]", // <-- ¡Aquí están los cambios!
           side === "left"
             ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
             : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
@@ -237,7 +238,7 @@ function Sidebar({
           variant === "floating" || variant === "inset"
             ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
             : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l",
-          className
+          className,
         )}
         {...props}
       >
@@ -261,33 +262,22 @@ function SidebarTrigger({
   const { toggleSidebar } = useSidebar()
 
   return (
-    // <Button
-    //   data-sidebar="trigger"
-    //   data-slot="sidebar-trigger"
-    //   variant="ghost"
-    //   size="icon"
-    //   className={cn("size-7", className)}
-    //   onClick={(event) => {
-    //     onClick?.(event)
-    //     toggleSidebar()
-    //   }}
-    //   {...props}
-    // >
-    //   {/* <PanelLeftIcon /> */}
-    //   <p>CTA</p>
-    //   <span className="sr-only">Toggle Sidebar</span>
-    // </Button>
     <Button
       data-sidebar="trigger"
-      data-slot="sidebar-trigger"
-      variant="default"
+      variant="ghost"
+      size="icon"
+      className={cn(
+        "size-7 absolute right-4 top-4",
+        className
+      )}
       onClick={(event) => {
         onClick?.(event)
         toggleSidebar()
       }}
       {...props}
     >
-      CATEGORIAS
+      <X className="size-4" />
+      <span className="sr-only">Toggle Sidebar</span>
     </Button>
   )
 }
@@ -302,7 +292,7 @@ function SidebarTriggerPersonalizado({
   return (
     <button
       className="fixed left-0 top-1/2 z-50 bg-primary text-primary-foreground py-0.3 rounded-r-lg -translate-y-1/2 h-[7rem] "
-      style={{writingMode:'vertical-rl', textOrientation:'mixed'}}
+      style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
       data-sidebar="trigger"
       data-slot="sidebar-trigger"
       onClick={(event) => {

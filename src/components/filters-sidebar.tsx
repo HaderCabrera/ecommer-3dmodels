@@ -6,7 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+
 import { Badge } from "@/components/ui/badge"
 import { X } from "lucide-react"
 import { FilterColorOption, FilterOption } from "@/types"
@@ -174,20 +174,12 @@ export function FilterSidebar2({ category, subcategory }: FilterSidebarProps) {
 
     return (
         <Sheet>
-            {/* <SheetTrigger asChild>
-                <Button variant="outline">Open</Button>
-            </SheetTrigger> */}
             <SheetTrigger asChild>
                 <button className="fixed right-0 top-1/2 z-50 bg-primary text-primary-foreground py-0.3 rounded-l-lg -translate-y-1/2 h-[7rem]" style={{ writingMode: 'vertical-lr', textOrientation: 'mixed' }}>
                     Filtros
                 </button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px]">
-                {/* Contenido del sidebar de categorías */}
-            </SheetContent>
-            <SheetContent>
-                {/* Contenido del sidebar de categorías */}
-            </SheetContent>
+
             <SheetContent className="overflow-y-auto">
                 <SheetHeader className="bg-muted">
                     <SheetTitle>Selección de filtros</SheetTitle>
@@ -242,7 +234,6 @@ export function FilterSidebar2({ category, subcategory }: FilterSidebarProps) {
                     )}
                     <Accordion
                         type="single"
-                        collapsible
                         className="w-full"
                         defaultValue="item-3"
                     >

@@ -41,6 +41,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --header-height: 3.5rem;
 }
 
 :root {
@@ -120,3 +121,4 @@
     @apply bg-background text-foreground;
   }
 }
+

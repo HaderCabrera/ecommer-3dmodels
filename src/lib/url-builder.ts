@@ -17,12 +17,33 @@ export interface FilterParams {
 export class StrapiUrlBuilder {
   private baseUrl: string
   private endpoint: string
-  private filters: FilterParams
+  public filters: FilterParams
 
   constructor(baseUrl = "/api/products", filters: FilterParams = {}) {
     this.baseUrl = baseUrl
     this.endpoint = ""
     this.filters = filters
+  }
+
+  //   // Métodos públicos para modificar filtros
+  // setSearch(search?: string): StrapiUrlBuilder {
+  //   this.filters.search = search
+  //   return this
+  // }
+
+  setPage(page?: number): StrapiUrlBuilder {
+    this.filters.page = page
+    return this
+  }
+
+  setSortBy(sortBy?: "name" | "price" | "createdAt" | "popularity"): StrapiUrlBuilder {
+    this.filters.sortBy = sortBy
+    return this
+  }
+
+  setSortOrder(sortOrder?: "asc" | "desc"): StrapiUrlBuilder {
+    this.filters.sortOrder = sortOrder
+    return this
   }
 
   // Construir filtros para Strapi
@@ -66,13 +87,13 @@ export class StrapiUrlBuilder {
     // }
 
     // Filtro por búsqueda
-    if (this.filters.search) {
-      strapiFilters.$or = [
-        { name: { $containsi: this.filters.search } },
-        { description: { $containsi: this.filters.search } },
-        { "tags.name": { $containsi: this.filters.search } },
-      ]
-    }
+    // if (this.filters.search) {
+    //   strapiFilters.$or = [
+    //     { name: { $containsi: this.filters.search } },
+    //     { description: { $containsi: this.filters.search } },
+    //     { "tags.name": { $containsi: this.filters.search } },
+    //   ]
+    // }
 
     return strapiFilters
   }
@@ -177,7 +198,6 @@ export class StrapiUrlBuilder {
       url.searchParams.set("materials", this.filters.materials.join(","))
     }
 
-    console.log("SIZES", this.filters.sizes)
     if (this.filters.sizes && this.filters.sizes.length > 0) {
       url.searchParams.set("sizes", this.filters.sizes.join(","))
     }
@@ -229,13 +249,18 @@ export class StrapiUrlBuilder {
       filters.tags = Array.isArray(searchParams.tags) ? searchParams.tags : searchParams.tags.split(",")
     }
 
-    // if (searchParams.format) {
-    //   filters.format = Array.isArray(searchParams.format) ? searchParams.format : searchParams.format.split(",")
-    // }
+    if (searchParams.materials) {
+      filters.materials = Array.isArray(searchParams.materials) ? searchParams.materials : searchParams.materials.split(",")
+    }
 
-    // if (searchParams.software) {
-    //   filters.software = Array.isArray(searchParams.software) ? searchParams.software : searchParams.software.split(",")
-    // }
+    if (searchParams.colors) {
+      filters.colors = Array.isArray(searchParams.colors) ? searchParams.colors : searchParams.colors.split(",")
+    }
+
+    if (searchParams.sizes) {
+      filters.sizes = Array.isArray(searchParams.sizes) ? searchParams.sizes : searchParams.sizes.split(",")
+    }
+
 
     if (searchParams.sortBy) {
       filters.sortBy = Array.isArray(searchParams.sortBy)
